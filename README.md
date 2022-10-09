@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-"# RustTracer" 
-=======
 # RustTracer (work in progress)
 ![imageTest](https://user-images.githubusercontent.com/55766890/192128747-5c90cfda-a701-4f32-8e55-a0628961752d.png)
 

@@ -28,4 +28,3 @@ Learned a lot from this one, and definitely going to expand on it in the future.
 # References
 
 https://raytracing.github.io/
->>>>>>> 6fd95fee7aad2ba9927df2a0049eedfdc7677da4

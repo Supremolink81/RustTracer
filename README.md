@@ -27,4 +27,4 @@ Learned a lot from this one, and definitely going to expand on it in the future.
 
 # References
 
-https://raytracing.github.io/
+[_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)

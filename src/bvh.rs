@@ -1,10 +1,9 @@
-/*
-Module to store Bounding Volume Hierarchies (BVH) for collision optimization (from O(n) to O(log2 n))
-*/
-
 use crate::ray_class::Ray;
 use crate::vec_class::Point3;
 
+///Axis-aligned bounding box represented by two corners. For use in a Bounding Volume Hierarchy
+/// 
+/// to make detecting collisions in areas easier.
 #[derive(Debug, Clone, Copy)]
 pub struct AABB {
     pub minimum : Point3,

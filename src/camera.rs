@@ -1,5 +1,3 @@
-// Module to store the camera.
-
 use crate::ray_class::Ray;
 use crate::vec_class::{Vec3, Point3, cross, random_in_unit_disk};
 use core::f32::consts::PI;
@@ -8,6 +6,9 @@ fn degrees_to_radians(degrees : f32) -> f32 {
     degrees * PI / 180.0
 }
 
+///Camera struct to view scenes. Allows the scene to be viewed from many different perspectives 
+/// 
+/// and settings (such as focal point, defocus blur, and smaller viewport).
 #[derive(Debug, Clone, Copy)]
 pub struct Camera {
     pub origin : Point3,

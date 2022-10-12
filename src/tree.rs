@@ -23,6 +23,9 @@ impl Node {
     }
 }
 
+///Represents a Bounding Volume Hierarchy of the objects in the scene. Allows
+/// 
+/// ray collisions to be detected in O(log2 n) time.
 #[derive(Debug, Clone)]
 pub struct Tree {
     pub items : Vec<Node>,
@@ -30,24 +33,28 @@ pub struct Tree {
 }
 
 impl Tree {
+    ///Builds a Bounding Volume Hierarchy from a list of Hittavle objects.
     pub fn build(lst : &mut Vec<Hittable>) -> Tree {
         let mut t = Tree{items : vec![], root : 0};
         t.root = t.con(lst);
         t
     }
 
+    ///Creates a new node with two children.
     fn new_node(& mut self, aabb : Option<AABB>, left : Option<usize>, right : Option<usize>) -> usize {
         let next = self.items.len();
         self.items.push(Node::new(left, right, aabb, None));
         next
     }
 
+    ///Creates a new leaf node containing a Hittable object.
     fn new_leaf(&mut self, item : &Hittable) -> usize {
         let next = self.items.len();
         self.items.push(Node::new(None, None, Some(item.bounding_box()), Some(item.clone())));
         next
     }
 
+    ///Recursive helper function that constructs a new Bounding Volume Hierarchy from the input slice.
     fn con(&mut self, objects : &mut [Hittable]) -> usize {
         let axis = rand::thread_rng().gen_range(0..3) as usize;
         objects.sort_by(|a : &Hittable, b : &Hittable| cmp(a, b, axis));
@@ -76,6 +83,7 @@ impl Tree {
         self.new_node(None, None, None)
     }
 
+    ///Determines if a ray hits any object in the Bounding Volume Hierarchy.
     pub fn hit(& self, r : Ray, t_min : f32, t_max : f32, rec : &mut HitRecord, index : usize) -> bool {
         let node = &self.items[index];
         if let Some(aabb) = node.aabb {
@@ -116,6 +124,7 @@ impl Tree {
     }
 }
 
+///Custom comparator function for two Hittable objects (based on location).
 pub fn cmp(a : &Hittable, b : &Hittable, index : usize) -> Ordering {
     if a.bounding_box().minimum[index] < b.bounding_box().minimum[index] {
         return Ordering::Less;

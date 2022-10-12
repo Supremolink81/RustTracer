@@ -68,7 +68,6 @@ impl Hittable {
     /// 
     /// A mutable HitRecord reference is also passed as argument,
     /// so that if the function returns true, there is data regarding the details of the collision.
-    /// (Note: medium collision is still under construction and doesn't fully work)
     pub fn hit(&self, r : Ray, t_min : f32, t_max : f32, rec : &mut HitRecord) -> bool {
         match self {
             Hittable::Sphere(mat, center, radius) => {
@@ -260,12 +259,24 @@ impl Hittable {
     ///Gets the bounding box of this Hittable object.
     pub fn bounding_box(&self) -> AABB {
         match self {
-            Hittable::Sphere(_mat, center, radius) => AABB::new(*center - Vec3::new(*radius, *radius, *radius), *center + Vec3::new(*radius, *radius, *radius)),
-            Hittable::XYRect(_mat, x0, x1, y0, y1, k) => AABB::new(Point3::new(*x0, *y0, *k-0.001), Point3::new(*x1, *y1, k+0.001)),
-            Hittable::XZRect(_mat, x0, x1, z0, z1, k) => AABB::new(Point3::new(*x0, *k-0.001, *z0), Point3::new(*x1, *k+0.001, *z1)),
-            Hittable::YZRect(_mat, y0, y1, z0, z1, k) => AABB::new(Point3::new(*k-0.001, *y0, *z0), Point3::new(*k+0.001, *y1, *z1)),
-            Hittable::Medium(_mat, b, _density) => (**b).bounding_box(),
-            Hittable::Box(_mat, minimum, maximum) => AABB::new(*minimum, *maximum),
+            Hittable::Sphere(_mat, center, radius) => {
+                AABB::new(*center - Vec3::new(*radius, *radius, *radius), *center + Vec3::new(*radius, *radius, *radius))
+            },
+            Hittable::XYRect(_mat, x0, x1, y0, y1, k) => {
+                AABB::new(Point3::new(*x0, *y0, *k-0.001), Point3::new(*x1, *y1, k+0.001))
+            },
+            Hittable::XZRect(_mat, x0, x1, z0, z1, k) => {
+                AABB::new(Point3::new(*x0, *k-0.001, *z0), Point3::new(*x1, *k+0.001, *z1))
+            },
+            Hittable::YZRect(_mat, y0, y1, z0, z1, k) => {
+                AABB::new(Point3::new(*k-0.001, *y0, *z0), Point3::new(*k+0.001, *y1, *z1))
+            },
+            Hittable::Medium(_mat, b, _density) => {
+                (**b).bounding_box()
+            },
+            Hittable::Box(_mat, minimum, maximum) => {
+                AABB::new(*minimum, *maximum)
+            },
         }
     }
     

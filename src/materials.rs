@@ -52,7 +52,11 @@ impl Material {
                 let unit_direction = r_in.direction.unit_vector();
                 let cos = if dot(-unit_direction, rec.normal) < 1.0 {dot(-unit_direction, rec.normal)} else {1.0};
                 let sin = (1.0 - cos*cos).sqrt();
-                let dir = if refraction_ratio * sin > 1.0 || reflectance(cos, refraction_ratio) > rng.gen::<f32>() {unit_direction.reflect(rec.normal)} else {unit_direction.refract(rec.normal, refraction_ratio)};
+                let dir = if refraction_ratio * sin > 1.0 || reflectance(cos, refraction_ratio) > rng.gen::<f32>() {
+                    unit_direction.reflect(rec.normal)
+                } else {
+                    unit_direction.refract(rec.normal, refraction_ratio)
+                };
 
                 *scattered = Ray::new(rec.p, dir);
                 true

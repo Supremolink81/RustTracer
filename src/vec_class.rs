@@ -67,10 +67,12 @@ impl Vec3 {
         self.x.abs() < s && self.y.abs() < s && self.z.abs() < s
     }
 
+    ///Returns a reflected vector based on the input and the calling vector (for use in Dielectric and Metal objects).
     pub fn reflect(&self, n : Vec3) -> Vec3 {
         *self -  n * 2.0 * dot(*self, n)
     }
 
+    ///Returns a refracted vector based on the input and the calling vector (for use in Dielectric objects).
     pub fn refract(&self, n : Vec3, etai_over_etat : f32) -> Vec3 {
         let cos = if dot(-(*self), n) < 1.0 {dot(-(*self), n)} else {1.0};
         let r_perp = (*self + n * cos) * etai_over_etat;
@@ -193,10 +195,12 @@ impl Neg for Vec3 {
     }
 }
 
+///The dot product of two vectors.
 pub fn dot(v1 : Vec3, v2 : Vec3) -> f32 {
     (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z)
 }
 
+///The cross product of two vectors.
 pub fn cross(v1 : Vec3, v2 : Vec3) -> Vec3 {
     Vec3 {
         x : (v1.y * v2.z) - (v1.z * v2.y),
@@ -205,6 +209,7 @@ pub fn cross(v1 : Vec3, v2 : Vec3) -> Vec3 {
     }
 }
 
+///Generates a random vector within a unit sphere (for use in ray scattering).
 pub fn random_in_unit_sphere() -> Vec3 {
     let mut rng = rand::thread_rng();
     let r1 = rng.gen::<f32>();
@@ -212,6 +217,7 @@ pub fn random_in_unit_sphere() -> Vec3 {
     Vec3::new((2.0 * PI * r1).cos() * 2.0 * (r2 * (1.0 - r2)).sqrt(), (2.0 * PI * r1).sin() * 2.0 * (r2 * (1.0 - r2)).sqrt(), 1.0 - (2.0 * r2))
 }
 
+///Generates a random Vec3 in the camera's unit disk (for use in defocus blur).
 pub fn random_in_unit_disk() -> Vec3 {
     let mut p;
     loop {

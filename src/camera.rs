@@ -21,7 +21,7 @@ pub struct Camera {
 }
 
 impl Camera {
-    pub fn make(lookfrom : Point3, lookat : Point3, vup : Vec3, vfov : f32, aspect_ratio : f32, aperture : f32, focus_dist : f32) -> Camera {
+    pub fn new(lookfrom : Point3, lookat : Point3, vup : Vec3, vfov : f32, aspect_ratio : f32, aperture : f32, focus_dist : f32) -> Camera {
         let theta = degrees_to_radians(vfov);
         let h = (theta/2.0).tan();
 

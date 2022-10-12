@@ -108,7 +108,7 @@ fn main() {
     let world : Tree = scene();
     let samples_per_pixel = 1000;
     let max_depth = 1000;
-    let cam = Camera::make(lookfrom.clone(), lookat.clone(), vup, 40.0, aspect_ratio, aperture, dist);
+    let cam = Camera::new(lookfrom.clone(), lookat.clone(), vup, 40.0, aspect_ratio, aperture, dist);
     let mut img = RgbImage::new(image_width, image_height);
     println!("P3\n{} {}\n255\n", image_width, image_height);
 

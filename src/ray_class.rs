@@ -28,20 +28,6 @@ impl Ray {
         self.origin_point + self.direction * ti
     }
 
-    /// Determines at what point, if any, this ray would hit a sphere.
-    pub fn hit_sphere(&self, center : Point3, radius : f32) -> f32 {
-        let oc = self.origin_point - center;
-        let a : f32 = dot(self.direction, self.direction);
-        let half_b : f32 = dot(oc, self.direction);
-        let c : f32 = dot(oc, oc) - radius * radius;
-        let discriminant : f32 = half_b * half_b - a * c;
-        if discriminant < 0.0 {
-            -1.0
-        } else {
-            (-half_b - discriminant.sqrt()) / a
-        }
-    }
-
     /// Determines the color of the ray.
     /// 
     /// Based on a variety of factors, including:

@@ -117,9 +117,9 @@ impl Tree {
 }
 
 pub fn cmp(a : &Hittable, b : &Hittable, index : usize) -> Ordering {
-    if a.bounding_box().min()[index] < b.bounding_box().min()[index] {
+    if a.bounding_box().minimum[index] < b.bounding_box().minimum[index] {
         return Ordering::Less;
-    } else if a.bounding_box().min()[index] > b.bounding_box().min()[index] {
+    } else if a.bounding_box().minimum[index] > b.bounding_box().minimum[index] {
         return Ordering::Greater;
     } 
     Ordering::Equal

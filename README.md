@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-"# RustTracer" 
-=======
 # RustTracer (work in progress)
 ![imageTest](https://user-images.githubusercontent.com/55766890/192128747-5c90cfda-a701-4f32-8e55-a0628961752d.png)
 
@@ -30,5 +27,4 @@ Learned a lot from this one, and definitely going to expand on it in the future.
 
 # References
 
-https://raytracing.github.io/
->>>>>>> 6fd95fee7aad2ba9927df2a0049eedfdc7677da4
+[_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)

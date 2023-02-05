@@ -1,19 +1,9 @@
-# RustTracer (work in progress)
+# RustTracer
 ![imageTest](https://user-images.githubusercontent.com/55766890/192128747-5c90cfda-a701-4f32-8e55-a0628961752d.png)
 
 CPU-based path tracer written in Rust. Rendered using multiple threads for efficiency.
 
-Learned a lot from this one, and definitely going to expand on it in the future.
-
-# Features to add
-
--loading .obj files
-
--object agnosticism through triangles
-
--port to GPU for more efficiency
-
--optimizations for the Bounding Volume Hierarchy
+Learned a lot from this one, and may expand on it through another project in the future.
 
 # Gallery
 
